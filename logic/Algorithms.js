@@ -1,16 +1,20 @@
+import {threshold} from "constants.js"
+
 export class Algorithms {   
 
-    static Dijkstra(startSquare, chessBoard, endSquare) {
+    static dijkstra(chessBoard) {
+        let startSquare = chessBoard.startSquare;
+        let endSquare = chessBoard.endSquare;
         let visitedSet = new Set();
-        let shortestPath = new Map(); // stores the distance Map
-        let previous = new Map();
+        let pathMap = new Map();
         let pq = new PriorityQueue();
         let endFound = false;
 
-        let size = chessBoard.getVertices();
+        let size = chessBoard.numUnblocked;
+        let thresholdSize = size * threshold
         pq.enqueue([startSquare, null, 0]);
 
-        while (pq.size != 0 && visitedSet.size < size && !endFound) {
+        while (pq.size != 0 && visitedSet.size < size && (!endFound || visitedSet.size > thresholdSize)) {
             let curr = pq.dequeue();
             if (!visitedSet.has(curr[0])) {
 
@@ -19,8 +23,7 @@ export class Algorithms {
                 }
 
                 visitedSet.add(curr[0]);
-                shortestPath.add(curr[0], curr[2]);
-                previous.set(curr[0], curr[1]);
+                pathMap.set(curr[0], [curr[1], curr[2]])
 
                 chessBoard.getPossibleNext(curr.x, curr.y).foreach(chessSquare => {
                     if (!visitedSet.has(chessSquare)) {
@@ -30,21 +33,6 @@ export class Algorithms {
             }
         }
 
-        if (visitedSet.has(endSquare)) {
-            return previous;
-        } else {
-            throw TypeError(errors.unsolvable)
-        }
-    }
-
-    static getDijkstraPath(startSquare, chessBoard, endSquare) {
-        let previous = Dijkstra(startSquare, chessBoard);
-        let path = [];
-        let curr = endSquare;
-        while (curr != null) {
-            path.push(curr);
-            curr = previous.get(curr);
-        }
-        return path.reverse();
+        return [pathMap, !endFound || visitedSet.size > threshold];
     }
 }
