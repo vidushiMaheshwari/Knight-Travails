@@ -22,11 +22,26 @@ class ChessBoard {
             if (new_x > 0 && new_x < this.width && new_y > 0 && new_y < this.height) {
                 // present in board
                 if(!this.board[new_x][new_y].blocked) {
-                    rList.push(this.board[new_x], new_y)
+                    rList.push(this.board[new_x][new_y])
                 }
             }
         }
         return rList
     }
+
+    getVertices() {
+        let val = 0
+        this.board.forEach( row => {
+            row.forEach( chessSquare => {
+                if (!chessSquare.blocked) {
+                    val++
+                }
+            })
+        });
+
+        return val
+    }
+
+    
 
 }
