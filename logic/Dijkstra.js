@@ -1,3 +1,0 @@
-Dijkstra(startSquare, ) {
-    
-}
