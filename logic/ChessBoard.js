@@ -1,3 +1,5 @@
+import {knight_moves} from "constants.js"
+
 class ChessBoard {
     constructor(width=8, height=8) {
         this.width = width
@@ -13,23 +15,18 @@ class ChessBoard {
     }
 
     getPossibleNext(x, y) {
-        pNext = this.board[x][y].getPossibleNext()
-
         let rList = []
-
-        // validate the pNext array::
-        pNext.forEach(chessSquare => {
-            if (!chessSquare.blocked) {
-                if (chessSquare.x > 0 && chessSquare.x < this.width && chessSquare.y > 0 && chessSquare.y < this.height) {
-                    rList.push(chessSquare)
+        for (let i = 0; i < knight_moves.length(); i++) {
+            new_x = x - knight_moves[i]
+            new_y = y - knight_moves[i]
+            if (new_x > 0 && new_x < this.width && new_y > 0 && new_y < this.height) {
+                // present in board
+                if(!this.board[new_x][new_y].blocked) {
+                    rList.push(this.board[new_x], new_y)
                 }
             }
-        });
-
+        }
         return rList
     }
 
-    createGraph() {
-        
-    }
 }
