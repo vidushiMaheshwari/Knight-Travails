@@ -1,4 +1,4 @@
-class Algorithms {   
+export class Algorithms {   
     static Dijkstra(startSquare, chessBoard) {
         let visitedSet = new Set();
         let shortestPath = new Map();

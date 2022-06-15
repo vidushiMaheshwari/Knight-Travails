@@ -9,7 +9,7 @@ class PriorityQueue {
         this.size++;
         let index = this.size;
         let parentIndex = Math.floor(index / 2);
-        while (parentIndex > 0 && this.backingArray[parentIndex][1] > this.backingArray[index][1]) {
+        while (parentIndex > 0 && this.backingArray[parentIndex][2] > this.backingArray[index][2]) {
             let temp = this.backingArray[parentIndex];
             this.backingArray[parentIndex] = this.backingArray[index];
             this.backingArray[index] = temp;
@@ -26,7 +26,7 @@ class PriorityQueue {
         let index = 1;
         let greater = index * 2;
         while (greater <= this.size) {
-            if (greater < this.backingArray.size - 1 && this.backingArray[greater] > this.backingArray[greater + 1]) {
+            if (greater < this.backingArray.size - 1 && this.backingArray[greater][2] > this.backingArray[greater + 1][2]) {
                 greater += 1;
             }
             if (this.backingArray[index] > this.backingArray[greater]) {
@@ -39,7 +39,7 @@ class PriorityQueue {
             index = greater
             greater *= 2;
         }
-        
+
         return temp;
     }
 }
