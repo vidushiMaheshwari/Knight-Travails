@@ -1,4 +1,4 @@
-class PriorityQueue {
+export class PriorityQueue {
     constructor() {
         this.backingArray = [null];
         this.size = 0;
@@ -20,16 +20,20 @@ class PriorityQueue {
 
     dequeue() {
         let temp = this.backingArray[1];
-        this.backingArray[1] = this.backingArray.pop();
+        if (this.size > 1) {
+            this.backingArray[1] = this.backingArray.pop();
+        } else {
+            this.backingArray.pop();
+        }
         this.size--;
         
         let index = 1;
         let greater = index * 2;
         while (greater <= this.size) {
-            if (greater < this.backingArray.size - 1 && this.backingArray[greater][2] > this.backingArray[greater + 1][2]) {
+            if (greater < this.backingArray.length - 1 && this.backingArray[greater][2] > this.backingArray[greater + 1][2]) {
                 greater += 1;
             }
-            if (this.backingArray[index] > this.backingArray[greater]) {
+            if (this.backingArray[index][2] > this.backingArray[greater][2]) {
                 let temp2 = this.backingArray[index];
                 this.backingArray[index] = this.backingArray[greater];
                 this.backingArray[greater] = temp2;
