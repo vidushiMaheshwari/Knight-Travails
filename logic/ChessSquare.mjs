@@ -1,4 +1,4 @@
-class ChessSquare{
+export class ChessSquare{
     constructor(x, y, blocked=false) {
         this.x = x;
         this.y = y

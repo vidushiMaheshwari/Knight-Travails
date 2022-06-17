@@ -1,7 +1,6 @@
-import {threshold} from "constants.js"
+import threshold from "./constants.js"
 
 export class Algorithms {   
-
     static dijkstra(chessBoard) {
         let startSquare = chessBoard.startSquare;
         let endSquare = chessBoard.endSquare;

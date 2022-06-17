@@ -1,19 +1,21 @@
-import {knight_moves} from "constants.js"
-import {Algorithms} from "./Algorithms";
+import knight_moves from "./constants.js"
+import {Algorithms} from "./Algorithms.mjs"
+import {ChessSquare} from "./ChessSquare.mjs"
 
 class ChessBoard {
-    constructor(width=8, height=8) {
+    constructor(width=8, height=8, startSquare=null, endSquare=null) {
         this.width = width
         this.height = height
-        this.startSquare = null;
-        this.endSquare = null;
+        this.startSquare = startSquare
+        this.endSquare = endSquare
         this.numUnblocked = width * height;
-        this.solve = None
+        this.solve = null
 
         let board = []
         for (let i = 0; i < width; i++) {
+            board.push([])
             for (let j = 0; j < height; j++) {
-                board[i][j] = new ChessSquare(i, j)
+                board[i].push(new ChessSquare(i, j))
             }
         }
         this.board = board
@@ -58,3 +60,6 @@ class ChessBoard {
         return [path.reverse(), numMoves];
     }
 }
+
+let chessBoard = new ChessBoard();
+console.log(chessBoard);
