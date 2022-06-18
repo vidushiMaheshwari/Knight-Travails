@@ -6,4 +6,6 @@ const errors = {
 
 const threshold = 0.7
 
-export {knight_moves, errors, threshold};
+let queue_capacity = 7
+
+export {knight_moves, errors, threshold, queue_capacity};

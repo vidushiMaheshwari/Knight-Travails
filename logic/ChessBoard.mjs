@@ -2,7 +2,7 @@ import {knight_moves} from "./constants.mjs"
 import {Algorithms} from "./Algorithms.mjs"
 import {ChessSquare} from "./ChessSquare.mjs"
 
-class ChessBoard {
+export class ChessBoard {
     constructor(width=8, height=8, startSquare=null, endSquare=null) {
         this.width = width              // analogous to columns
         this.height = height            // analogous to rows

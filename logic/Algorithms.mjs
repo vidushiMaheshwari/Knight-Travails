@@ -1,6 +1,6 @@
 import {threshold} from "./constants.mjs"
-import {PriorityQueue} from "./PriorityQueue.mjs"
-//import {Queue} from "./Queue.mjs"
+// import {PriorityQueue} from "./PriorityQueue.mjs"
+import {Queue} from "./Queue.mjs"
 
 export class Algorithms {   
     static dijkstra(chessBoard) {
@@ -8,8 +8,8 @@ export class Algorithms {
         let endSquare = chessBoard.endSquare;
         let visitedSet = new Set();
         let pathMap = new Map();
-        //let queue = new Queue();
-        let pq = new PriorityQueue(endSquare);
+        let pq = new Queue(chessBoard.numUnblocked*0.1); //initial size of array is 10% of the chessBoard blocks (can change this to anything)
+        // let pq = new PriorityQueue(endSquare);
 
         let size = chessBoard.numUnblocked;
         let thresholdSize = size * threshold
