@@ -15,8 +15,16 @@ export class Algorithms {
         let thresholdSize = size * threshold
         pq.enqueue([startSquare, null, 0]);
 
+        let endFound = null;
         while (pq.size != 0 && visitedSet.size < size) {
-            let curr = pq.dequeue();
+            let curr;
+            if (endFound) {
+                curr = endFound;
+                endFound = null;
+            } else {
+                curr = pq.dequeue();
+            }
+            
             if (!visitedSet.has(curr[0])) {
                 visitedSet.add(curr[0]);
                 pathMap.set(curr[0], [curr[1], curr[2]]);
@@ -27,7 +35,11 @@ export class Algorithms {
 
                 chessBoard.getPossibleNext(curr[0].x, curr[0].y).forEach(chessSquare => {
                     if (!visitedSet.has(chessSquare)) {
-                        pq.enqueue([chessSquare, curr[0], curr[2] + 1]);
+                        if (chessSquare == endSquare) {
+                            endFound = [chessSquare, curr[0], curr[2] + 1];
+                        } else {
+                            pq.enqueue([chessSquare, curr[0], curr[2] + 1]);
+                        }
                     }
                 });
             }
