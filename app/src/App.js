@@ -1,25 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { ChessBoard } from '../logic/ChessBoard';
 
 function App() {
+  const [dimensions, setDimensions] = useState([8, 8]);  // [rows, columns]
+  const [startSquare, setStart] = useState([2, 0]);      // [row, column]
+  const [endSquare, setEnd] = useState([1, 4]);          // [row, column]
+  const [numbers, setNumbers] = useState([]);            // contains elements of form [number: [row, column]]
+
+  let chessBoard = new ChessBoard(dimensions[0], dimensions[1]);
+  chessBoard.startSquare = chessBoard.board[startSquare[0]][startSquare[1]];
+  chessBoard.endSquare = chessBoard.board[endSquare[0]][endSquare[1]];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <></>
     </div>
-  );
+  )
 }
 
 export default App;
