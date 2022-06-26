@@ -1,6 +1,6 @@
 import { queue_capacity } from "./constants.mjs";
 
-export class Queue{
+export class Queue {
 
     // I believe we should change the capacity to be dynamically changed according to the size of the board (in some sort of proportion)
     constructor(capacity=queue_capacity) {
@@ -10,16 +10,17 @@ export class Queue{
         this.capacity = capacity;
     }
 
-    enqueue([next, curr, num_moves]) {
+    enqueue(element) {
         if (this.size < this.capacity) {
-            this.backingArray[(this.front + this.size)%this.capacity] = [next, curr, num_moves];
+            this.backingArray[(this.front + this.size)%this.capacity] = element;
         } else {
             this.capacity *= 2;
             let new_backing = []
             for(let i = 0; i < this.size; i++) {
                 new_backing.push(this.backingArray[(this.front + i)%this.size]);
             }
-            new_backing.push([next, curr, num_moves]);
+            new_backing.push(element);
+            this.front = 0;
             this.backingArray = new_backing;
         }
         this.size++;

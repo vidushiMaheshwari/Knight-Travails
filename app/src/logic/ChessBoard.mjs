@@ -65,10 +65,12 @@ export class ChessBoard {
     }
 }
 
-let chessBoard = new ChessBoard(100, 100);
-chessBoard.startSquare = chessBoard.board[Math.floor(Math.random() * 100)][Math.floor(Math.random() * 100)];
-console.log(chessBoard.startSquare);
-for (let i = 0; i < 10; i++) {
-    chessBoard.endSquare = chessBoard.board[Math.floor(Math.random() * 100)][Math.floor(Math.random() * 100)];
-    console.log(chessBoard.endSquare, chessBoard.solver()[1]);
-}
+//let chessBoard = new ChessBoard(8, 8);
+//chessBoard.startSquare = chessBoard.board[0][0];
+//console.log(chessBoard.startSquare);
+//for (let i = 0; i < 8; i++) {
+//    for (let j = 0; j < 8; j++) {
+//        chessBoard.endSquare = chessBoard.board[i][j];
+//        console.log(chessBoard.endSquare, chessBoard.solver()[1]);
+//    }
+//}

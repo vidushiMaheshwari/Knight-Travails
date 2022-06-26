@@ -1,5 +1,5 @@
 import {threshold} from "./constants.mjs"
-// import {PriorityQueue} from "./PriorityQueue.mjs"
+import {PriorityQueue} from "./PriorityQueue.mjs"
 import {Queue} from "./Queue.mjs"
 
 export class Algorithms {   
@@ -8,21 +8,21 @@ export class Algorithms {
         let endSquare = chessBoard.endSquare;
         let visitedSet = new Set();
         let pathMap = new Map();
-        let pq = new Queue(chessBoard.numUnblocked*0.1); //initial size of array is 10% of the chessBoard blocks (can change this to anything)
-        // let pq = new PriorityQueue(endSquare);
+        let queue = new Queue(Math.floor(chessBoard.numUnblocked*0.1)); //initial size of array is 10% of the chessBoard blocks (can change this to anything)
+        //let queue = new PriorityQueue(endSquare);
 
         let size = chessBoard.numUnblocked;
         let thresholdSize = size * threshold
-        pq.enqueue([startSquare, null, 0]);
+        queue.enqueue([startSquare, null, 0]);
 
         let endFound = null;
-        while (pq.size !== 0 && visitedSet.size < size) {
+        while (queue.size !== 0 && visitedSet.size < size) {
             let curr;
             if (endFound) {
                 curr = endFound;
                 endFound = null;
             } else {
-                curr = pq.dequeue();
+                curr = queue.dequeue();
             }
             
             if (!visitedSet.has(curr[0])) {
@@ -38,7 +38,7 @@ export class Algorithms {
                         if (chessSquare === endSquare) {
                             endFound = [chessSquare, curr[0], curr[2] + 1];
                         } else {
-                            pq.enqueue([chessSquare, curr[0], curr[2] + 1]);
+                            queue.enqueue([chessSquare, curr[0], curr[2] + 1]);
                         }
                     }
                 });
