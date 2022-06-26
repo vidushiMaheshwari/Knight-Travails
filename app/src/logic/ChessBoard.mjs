@@ -4,33 +4,33 @@ import { ChessSquare } from "./ChessSquare.mjs"
 import { errors } from "./constants.mjs"
 
 export class ChessBoard {
-    constructor(width=8, height=8, startSquare=null, endSquare=null) {
-        this.width = width              // analogous to columns
-        this.height = height            // analogous to rows
-        this.startSquare = startSquare
-        this.endSquare = endSquare
-        this.numUnblocked = width * height;
-        this.solve = null
+    constructor(rows=8, columns=8) {
+        this.rows = rows;
+        this.columns = columns;
+        this.startSquare = null;
+        this.endSquare = null;
+        this.numUnblocked = rows * columns;
+        this.solve = null;
 
         let board = []
-        for (let i = 0; i < height; i++) {
+        for (let i = 0; i < rows; i++) {
             board.push([])
-            for (let j = 0; j < width; j++) {
+            for (let j = 0; j < columns; j++) {
                 board[i].push(new ChessSquare(i, j))
             }
         }
         this.board = board
     }
 
-    getPossibleNext(x, y) {
+    getPossibleNext(row, column) {
         let rList = []
         for (let i = 0; i < knight_moves.length; i++) {
-            let new_x = x - knight_moves[i][0];
-            let new_y = y - knight_moves[i][1];
-            if (new_x >= 0 && new_x < this.width && new_y >= 0 && new_y < this.height) {
+            let new_row = row - knight_moves[i][0];
+            let new_column = column - knight_moves[i][1];
+            if (new_row >= 0 && new_row < this.rows && new_column >= 0 && new_column < this.columns) {
                 // present in board
-                if(!this.board[new_x][new_y].blocked) {
-                    rList.push(this.board[new_x][new_y])
+                if(!this.board[new_row][new_column].blocked) {
+                    rList.push(this.board[new_row][new_column])
                 }
             }
         }
