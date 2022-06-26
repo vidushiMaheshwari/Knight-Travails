@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { ChessBoard } from '../logic/ChessBoard';
+import { ChessBoard } from './logic/ChessBoard';
 
 function App() {
   const [dimensions, setDimensions] = useState([8, 8]);  // [rows, columns]
